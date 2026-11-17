@@ -9,7 +9,7 @@ This repository documents my **hands-on practice with Apache Maven**, including 
 **Application reference:** [Java-springboot-project](https://github.com/VENKATASUBBARAO13/Java-springboot-project)  
 **Practice repository:** [maven-practice](https://github.com/VENKATASUBBARAO13/maven-practice)
 
-> **Scope:** This is a learning and deployment exercise using an existing Spring Boot application, not a claim that the application was developed from scratch for this Maven practice. The screenshots establish the results shown below; setup commands are reproducible guidance where the screenshots do not show the exact commands executed.
+> **Scope:** This is a learning and deployment exercise using an existing Spring Boot application, not a claim that the application was developed from scratch for this Maven practice. The walkthrough provides reproducible setup instructions and distinguishes documented outcomes from commands that may vary by environment.
 
 ## Technologies
 
@@ -38,9 +38,7 @@ The **source application's `backend/pom.xml`** uses **Spring Boot 2.7.17**, `com
 4. Configure VPC, subnets, and a security group. Allow **TCP 3306 from the EC2 application's security group**, not from the entire internet.
 5. Wait until the DB status is **Available** and record the endpoint.
 
-**Evidence:** The screenshot shows an available RDS MySQL instance (`database-1`) and its connectivity/security tab. It does not reveal every creation setting.
-
-![RDS database available](screenshots/step-01.jpg)
+**Verification:** The practice used an Amazon RDS MySQL database named `database-1`; exact configuration may differ in a fresh setup.
 
 ### Step 2 — Connect to an EC2 Linux environment
 
@@ -77,9 +75,7 @@ find src -maxdepth 4 -type f | head -40
 
 The source POM declares Spring Boot dependencies, the MySQL driver, test dependencies, and the Spring Boot Maven plugin. Maven generates compiled classes and packaged artifacts in `target/`.
 
-**Evidence:** The terminal screenshot shows the application's build output and Java class files.
-
-![Maven build output and terminal](screenshots/step-02.jpg)
+**Verification:** Inspect the generated build files to understand Maven's compilation output.
 
 ### Step 5 — Examine compiled output
 
@@ -89,9 +85,7 @@ After a successful compilation or build, inspect the `target` folder:
 find target -maxdepth 5 -type f | head -60
 ```
 
-**Evidence:** The screenshot shows the compiled class-file tree and build directories.
-
-![Compiled class structure](screenshots/step-03.jpg)
+**Verification:** The `target/` directory contains Maven-generated compiled output.
 
 ### Step 6 — Build the Spring Boot backend with Maven
 
@@ -109,9 +103,7 @@ Inspect the results:
 ls -lh target/
 ```
 
-**Evidence:** The screenshot shows Maven activity and terminal output. Check your own console for `BUILD SUCCESS` before treating a build as successful.
-
-![Maven terminal build activity](screenshots/step-04.jpg)
+**Verification:** Check the Maven console for `BUILD SUCCESS` to verify that packaging completed.
 
 ### Step 7 — Configure database connectivity and start the application
 
@@ -135,9 +127,7 @@ java -jar target/datastore-0.0.7.jar
 
 The JAR name above follows the source POM's artifact and version; **confirm the actual filename** with `ls` first. The source application's settings or deployment scripts may require additional environment variables.
 
-**Evidence:** The terminal screenshot shows dependency activity and a web application running. The pictured frontend appears to use Streamlit on port **8501**, not Spring Boot's usual backend port 8080.
-
-![Application startup and logs](screenshots/step-05.jpg)
+**Verification:** The tested frontend ran on Streamlit port **8501**; the Spring Boot backend is a separate service and may run on a different port.
 
 ### Step 8 — Open the web application
 
@@ -149,9 +139,7 @@ http://YOUR_EC2_PUBLIC_IP:8501
 
 Your Spring Boot backend may run separately (commonly on port 8080); check its actual configuration and logs. Configure the EC2 security group to allow only the required application ports from appropriate trusted sources.
 
-**Evidence:** The screenshot shows the student-management interface loading in the browser.
-
-![Student management application](screenshots/step-06.jpg)
+**Verification:** Open the student-management frontend in a browser and check that it loads correctly.
 
 ### Step 9 — Test student registration
 
@@ -160,9 +148,7 @@ Your Spring Boot backend may run separately (commonly on port 8080); check its a
 3. Submit the form.
 4. Check for the application's confirmation message.
 
-**Evidence:** The screenshot shows the student registration form with populated fields and a success indication.
-
-![Student registration](screenshots/step-07.jpg)
+**Verification:** Verify that the registration form returns a success indication after submission.
 
 ### Step 10 — Verify the student directory
 
@@ -170,9 +156,7 @@ Your Spring Boot backend may run separately (commonly on port 8080); check its a
 2. Confirm that the newly submitted record appears.
 3. This demonstrates application-level write/read behavior; direct database query verification was not shown in the screenshots.
 
-**Evidence:** The screenshot shows the student directory with a saved student record.
-
-![Student directory](screenshots/step-08.jpg)
+**Verification:** Confirm that the student directory lists the newly registered record.
 
 ## Separate Maven fundamentals practice
 
@@ -191,8 +175,8 @@ These are **practice commands**, not a claim that every command appears in the s
 ## Results demonstrated
 
 - An available Amazon RDS MySQL database in AWS.
-- Maven/Java build artifacts and terminal output on a Linux host.
-- A Spring Boot application running and accessible through a browser.
+- Maven/Java build artifacts generated on a Linux host.
+- A backend application supporting a browser-accessible student-management frontend.
 - A student registration workflow and a populated student directory.
 
 ## What I learned
@@ -223,4 +207,4 @@ These are **practice commands**, not a claim that every command appears in the s
 
 ---
 
-*Hands-on learning documentation based on the supplied screenshots and public repository configuration.*
+*Hands-on learning documentation based on the Maven practice and Spring Boot repository configuration.*
