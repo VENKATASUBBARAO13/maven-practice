@@ -154,7 +154,7 @@ Your Spring Boot backend may run separately (commonly on port 8080); check its a
 
 1. Open **View All Students**.
 2. Confirm that the newly submitted record appears.
-3. This demonstrates application-level write/read behavior; direct database query verification was not shown in the screenshots.
+3. This demonstrates application-level write/read behavior; a direct SQL query can provide additional database verification.
 
 **Verification:** Confirm that the student directory lists the newly registered record.
 
@@ -170,7 +170,7 @@ mvn package
 mvn clean
 ```
 
-These are **practice commands**, not a claim that every command appears in the supplied screenshots. Its JAR manifest specifies `com.project.App`, so a runnable JAR depends on that class being present and correctly compiled.
+These are **practice commands**, suggested for practicing the Maven lifecycle. Its JAR manifest specifies `com.project.App`, so a runnable JAR depends on that class being present and correctly compiled.
 
 ## Results demonstrated
 
